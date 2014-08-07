@@ -21,9 +21,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 import random
 
 def shuffle(arr):
-    for i in range(len(arr)):
+    for index, val in enumerate(arr):
         no = random.randrange(0, len(arr) - 1)
-        arr[i], arr[no] = arr[no], arr[i]
+        arr[index], arr[no] = arr[no], arr[index]
 
     return arr
 
