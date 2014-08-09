@@ -66,9 +66,16 @@ def checkModuleSupported(version, module):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Get the list of '
-                          'python modules based on version')
+                                                 'python modules '
+                                                 'based on version')
 
     parser.add_argument('version', help='python version')
+    parser.add_argument('module', nargs='?', help='module to check')
     args = parser.parse_args()
-    print getPythonModules(args.version).keys()
-    checkModuleSupported('2.7', 'turtle')
+    if args.module:
+        if checkModuleSupported(args.version, args.module):
+            print args.module + ' is supported'
+        else:
+            print args.module + ' is not supported'
+    else:
+        print getPythonModules(args.version).keys()
