@@ -1,5 +1,5 @@
-#getPyModuleList.py
-
+getPyModuleList.py
+------------------
 The following python script parses the python website using Beautiful soup to
 output a list of modules supported by the python version. The script optionally
 also takes a python module as input and checks whether the module is supported
@@ -30,7 +30,8 @@ in the python version. The following are some examples:
     requests is not supported
 ```
 
-#testHttpsServer.py
+testHttpsServer.py
+------------------
 
 Tests whether a websites supports https-to-https redirection, secure cookies,
 and Strict-Transport-Security
