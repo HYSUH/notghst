@@ -128,7 +128,7 @@ class SSLTest:
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='Tests whether a website '
-                                                 'supports https-to-https '
+                                                 'supports http-to-https '
                                                  'redirection, '
                                                  'secure cookies, and '
                                                  'Strict-Transport-Security')
