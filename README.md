@@ -33,7 +33,7 @@ in the python version. The following are some examples:
 testHttpsServer.py
 ------------------
 
-Tests whether a websites supports https-to-https redirection, secure cookies,
+Tests whether a website supports http-to-https redirection, secure cookies,
 and Strict-Transport-Security
 
 ```
@@ -41,7 +41,7 @@ and Strict-Transport-Security
     python testHttpsServer.py -h
     usage: testHttpsServer.py [-h] hostname
     
-    Tests whether a website supports https-to-https redirection, secure cookies,
+    Tests whether a website supports http-to-https redirection, secure cookies,
     and Strict-Transport-Security
     
     positional arguments:
