@@ -76,6 +76,7 @@ class SSLTest:
         except Exception as e:
             print self.ERROR + 'Couldnt connect to the server'
             print 'Exception details: ' + str(e)
+            httpsConn.close()
         finally:
             return httpsConn, res
 
@@ -119,6 +120,7 @@ class SSLTest:
         elif 'httponly' in cookie_values:
             print self.SUPPORTED + 'Cookies protected with HttpOnly!'
         print self.NOT_SUPPORTED + testName
+        httpsConn.close()
 
     def run_tests(self):
         self.testRedirectToHttps()
