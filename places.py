@@ -1,6 +1,6 @@
 '''
 Copyright(c) 2014 YSUV - This script takes the name of a palce as input and
-then plots all teh places in the world that has that name on a map using teh
+then plots all the places in the world that has that name on a map using the
 google maps API.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -28,10 +28,11 @@ from flask import Flask, request, render_template
 import argparse
 import json
 
+
 urlTemplate = 'https://maps.googleapis.com/maps/api/geocode/json?address=%s'
-mapurlTemplate = ('https://maps.googleapis.com/maps/api/staticmap?'
-                  'center=51.5073509,-0.1277583'
-                  '&zoom=1&size=400x400&maptype=hybrid'
+mapurlTemplate = 'https://maps.googleapis.com/maps/api/staticmap?%s'
+markerTemplate = ('center=0,0'
+                  '&zoom=1&size=600x600&maptype=hybrid'
                   '&markers=color:blue%7Clabel:S')
 
 
@@ -52,7 +53,7 @@ def fetchplaceInfoUrl(name):
                     str(result['geometry']['location']['lat']) + ',' +
                     str(result['geometry']['location']['lng']) + '%7C')
 
-    url = mapurlTemplate + latLong
+    url = mapurlTemplate + markerTemplate + latLong
     return len(results), url
 
 
@@ -66,4 +67,4 @@ def show_entries(place):
     return render_template('map.html', num=num, place=place, url=url)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
