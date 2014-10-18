@@ -1,4 +1,8 @@
 <html>
-    <title> There are {{ no }} places with the name {{name}} </title>
+{% if num > 1 %}
+<h1> There are {{ num }} places with the name {{place}} </h1>
+{% else %}
+<h1> There is {{ num }} place with the name {{place}} </h1>
+{% endif %}
     <img src="{{ url }}">
 </html>
