@@ -36,44 +36,34 @@ mapurlTemplate = ('https://maps.googleapis.com/maps/api/staticmap?'
 
 
 def fetchplaceInfoUrl(name):
-
+    ''' This function returns a URL that marks places using
+    latitues/longitutes'''
     url = urlTemplate % name
     urlObj = urlopen(url)
     data = urlObj.read()
     placeData = json.loads(data)
-    if placeData['status'].lower() == 'ok':
-        print 'able to get data'
-        results = placeData['results']
-        print 'number of places %d' % len(results)
-        latLong = ''
-        for result in results:
-            latLong += ('%7C' +
-                        str(result['geometry']['location']['lat']) + ',' +
-                        str(result['geometry']['location']['lng']) + '%7C')
+    if placeData['status'].lower() == 'ZERO_RESULTS':
+        return 0, ''
+
+    results = placeData['results']
+    latLong = ''
+    for result in results:
+        latLong += ('%7C' +
+                    str(result['geometry']['location']['lat']) + ',' +
+                    str(result['geometry']['location']['lng']) + '%7C')
 
     url = mapurlTemplate + latLong
-    return url
-    #urlObj = urlopen(url)
-    #data = urlObj.read()
-    #with open('map.png', 'w') as f:
-    #    f.write(data)
+    return len(results), url
 
 
 app = Flask(__name__)
 app.config.from_object(__name__)
 
+
 @app.route('/<place>', methods = ['GET'])
 def show_entries(place):
-    url = fetchplaceInfoUrl(place)
-    return render_template('map.html', url=url)
-
+    num, url = fetchplaceInfoUrl(place)
+    return render_template('map.html', num=num, place=place, url=url)
 
 if __name__ == '__main__':
-    #parser = argparse.ArgumentParser(description='Lists the number of places'
-    #                                             'in the world that have '
-    #                                             'a particular name')
-    #parser.add_argument('name', help='Name of a city')
-    #args = parser.parse_args()
-    #if args.name:
-        #fetchplaceInfo(args.name)
     app.run()
