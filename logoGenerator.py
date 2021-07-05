@@ -49,7 +49,7 @@ class MultiColoredSquares(turtle.Turtle):
         self.pendown()
         self.color(random.random(), random.random(), random.random())
         self.begin_fill()
-        for _ in xrange(4):
+        for _ in range(4):
             self.forward(self.squareSize)
             self.turnRight()
         self.end_fill()
@@ -57,7 +57,7 @@ class MultiColoredSquares(turtle.Turtle):
     def drawMultiSquareLine(self):
         ''' draws `length` number of squares horizontally starting at (x,y) and
         moving backwards '''
-        for _ in xrange(self.length):
+        for _ in range(self.length):
             self.moveBackASquare()
             self.drawFilledSquare()
 
@@ -65,7 +65,7 @@ class MultiColoredSquares(turtle.Turtle):
         ''' This function draws a mulitcoloured line `width` number of times
         '''
         self.reset()
-        for i in xrange(self.width):
+        for i in range(self.width):
             self.setPosToDrawSquareLine(i)
             self.drawMultiSquareLine()
 
@@ -74,4 +74,4 @@ if __name__ == '__main__':
         testturtle = MultiColoredSquares()
         testturtle.createSquareLogo()
     except Exception as e:
-        print e
+        print(e)
